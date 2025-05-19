@@ -3,6 +3,8 @@ from own_db_helpers import load_data
 def search_for_film(keyword, films_data):
     films_found = set()
     for film in films_data:
+        if film.get('original_title') is None:
+            continue
         if keyword.lower() in film['original_title'].lower():
             films_found.add(film['original_title'])
     return films_found
