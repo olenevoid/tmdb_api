@@ -3,6 +3,9 @@ from collections import OrderedDict
 
 def find_my_film(keyword, films_data):
     for film in films_data:
+        if film.get('original_title') is None:
+            continue
+
         if keyword == film['original_title']:
             return film
     return None
@@ -16,6 +19,9 @@ def get_rating(my_film, films_data, num_to_recommend=8):
     }
     rating = {}
     for film in films_data:
+        if film.get('original_title') is None:
+            continue
+        
         film_rate = 0
         for parameter in params:
             if film[parameter] == my_film[parameter]:
